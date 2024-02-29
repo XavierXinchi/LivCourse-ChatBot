@@ -1,0 +1,58 @@
+2023-11-23 21:15:00.106+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2023-11-23 21:15:00.108+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2023-11-23 21:15:00.108+0000 INFO  Logging config in use: File '/Users/xavier/vscodeprojects/FYP/neo4j/conf/user-logs.xml'
+2023-11-23 21:15:00.114+0000 INFO  Starting...
+2023-11-23 21:15:00.718+0000 INFO  This instance is ServerId{1d7a2103} (1d7a2103-1690-42bf-9069-d32c875399a5)
+2023-11-23 21:15:01.101+0000 INFO  ======== Neo4j 5.13.0 ========
+2023-11-23 21:15:02.672+0000 INFO  Bolt enabled on localhost:7687.
+2023-11-23 21:15:02.984+0000 INFO  HTTP enabled on localhost:7474.
+2023-11-23 21:15:02.984+0000 INFO  Remote interface available at http://localhost:7474/
+2023-11-23 21:15:02.985+0000 INFO  id: DFFA9A3C970B05F92D74E23EA796B811A7387E0C5BFEC35AC28C18A87736B175
+2023-11-23 21:15:02.986+0000 INFO  name: system
+2023-11-23 21:15:02.986+0000 INFO  creationDate: 2023-11-23T21:15:01.645Z
+2023-11-23 21:15:02.986+0000 INFO  Started.
+2023-11-23 21:15:08.161+0000 WARN  [bolt-3] The client is unauthorized due to authentication failure.
+2023-11-23 21:15:08.168+0000 WARN  [bolt-4] The client is unauthorized due to authentication failure.
+2023-11-23 21:15:08.179+0000 WARN  [bolt-5] The client is unauthorized due to authentication failure.
+2023-11-23 21:15:08.191+0000 WARN  [bolt-6] The client has provided incorrect authentication details too many times in a row.
+2023-11-23 21:15:08.204+0000 WARN  [bolt-7] The client has provided incorrect authentication details too many times in a row.
+2023-11-23 21:15:08.215+0000 WARN  [bolt-8] The client has provided incorrect authentication details too many times in a row.
+2023-11-23 22:28:42.392+0000 INFO  Neo4j Server shutdown initiated by request
+2023-11-23 22:28:42.393+0000 INFO  Stopping...
+2023-11-23 22:28:47.458+0000 INFO  Stopped.
+2024-02-03 19:59:38.655+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-02-03 19:59:38.657+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-02-03 19:59:38.657+0000 INFO  Logging config in use: File '/Users/xavier/vscodeprojects/FYP/neo4j/conf/user-logs.xml'
+2024-02-03 19:59:38.663+0000 INFO  Starting...
+2024-02-03 19:59:39.284+0000 INFO  This instance is ServerId{1d7a2103} (1d7a2103-1690-42bf-9069-d32c875399a5)
+2024-02-03 19:59:39.651+0000 INFO  ======== Neo4j 5.13.0 ========
+2024-02-03 19:59:40.594+0000 INFO  Bolt enabled on localhost:7687.
+2024-02-03 19:59:40.954+0000 INFO  HTTP enabled on localhost:7474.
+2024-02-03 19:59:40.954+0000 INFO  Remote interface available at http://localhost:7474/
+2024-02-03 19:59:40.955+0000 INFO  id: DFFA9A3C970B05F92D74E23EA796B811A7387E0C5BFEC35AC28C18A87736B175
+2024-02-03 19:59:40.955+0000 INFO  name: system
+2024-02-03 19:59:40.955+0000 INFO  creationDate: 2023-11-23T21:15:01.645Z
+2024-02-03 19:59:40.955+0000 INFO  Started.
+2024-02-03 20:00:57.898+0000 INFO  Neo4j Server shutdown initiated by request
+2024-02-03 20:00:57.899+0000 INFO  Stopping...
+2024-02-03 20:01:03.371+0000 INFO  Stopped.
+2024-02-14 22:05:26.949+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2024-02-14 22:05:26.951+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2024-02-14 22:05:26.951+0000 INFO  Logging config in use: File '/Users/xavier/vscodeprojects/FYP/neo4j/conf/user-logs.xml'
+2024-02-14 22:05:26.958+0000 INFO  Starting...
+2024-02-14 22:05:27.608+0000 INFO  This instance is ServerId{1d7a2103} (1d7a2103-1690-42bf-9069-d32c875399a5)
+2024-02-14 22:05:27.965+0000 INFO  ======== Neo4j 5.13.0 ========
+2024-02-14 22:05:29.008+0000 INFO  Bolt enabled on localhost:7687.
+2024-02-14 22:05:29.351+0000 INFO  HTTP enabled on localhost:7474.
+2024-02-14 22:05:29.351+0000 INFO  Remote interface available at http://localhost:7474/
+2024-02-14 22:05:29.352+0000 INFO  id: DFFA9A3C970B05F92D74E23EA796B811A7387E0C5BFEC35AC28C18A87736B175
+2024-02-14 22:05:29.353+0000 INFO  name: system
+2024-02-14 22:05:29.353+0000 INFO  creationDate: 2023-11-23T21:15:01.645Z
+2024-02-14 22:05:29.353+0000 INFO  Started.
+2024-02-14 22:10:56.713+0000 WARN  [bolt-17] The client is unauthorized due to authentication failure.
+2024-02-14 22:12:42.822+0000 WARN  [bolt-18] The client is unauthorized due to authentication failure.
+2024-02-14 22:18:01.740+0000 WARN  [bolt-28] The client is unauthorized due to authentication failure.
+2024-02-14 22:20:00.460+0000 WARN  [bolt-29] The client is unauthorized due to authentication failure.
+2024-02-14 22:23:19.640+0000 WARN  [bolt-39] The client is unauthorized due to authentication failure.
+2024-02-15 00:57:26.677+0000 INFO  Neo4j Server shutdown initiated by request
+2024-02-15 00:57:26.678+0000 INFO  Stopping...
