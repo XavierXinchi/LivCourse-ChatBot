@@ -2,7 +2,7 @@
     "university": "University of Liverpool",
     "degrees": [
         {
-            "degree_name": "BEng Avionic Systems(Hons)",
+            "degree_name": "BEng Avionic Systems (Hons)",
             "courses": {
                 "year1": {
                     "compulsory_modules": [
