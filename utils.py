@@ -24,6 +24,16 @@ def get_llm_model():
     }
     return model_map.get(os.getenv('LLM_MODEL'))
 
+def structured_output_parser(response_schemas):
+    text = '''
+    Please extract the entity information from the following text and output it in json format, the json contains the first and last "```json" and "```".
+    Below are the field meanings and types, it is required that in the output json, all the following fields must be included:\n
+    '''
+    for schema in response_schemas:
+        text += schema.name + ' field, represent: ' + schema.description + ', type is: ' + schema.type + '\n'
+    return text
+
+
 if __name__ == '__main__':
     llm_model = get_llm_model()
     print(llm_model.predict('what is university of liverpool?'))

@@ -48,7 +48,40 @@ class Agent():
         }
         return retrival_chain.invoke(inputs)['text']
     
+    def graph_func(self, query):
+        # 命名实体识别
+        response_schemas = [
+            ResponseSchema(type='list', name='university', description='university entity'),
+            ResponseSchema(type='list', name='degree', description='degree entity'),
+            ResponseSchema(type='list', name='Year', description='degree year entity'),
+            ResponseSchema(type='list', name='CompulsoryModule', description='compulsory modules entity'),
+            ResponseSchema(type='list', name='OptionalModule', description='optional modules entity')
+        ]
+
+        output_parser = StructuredOutputParser(response_schemas=response_schemas)
+        format_instructions = structured_output_parser(response_schemas)
+
+        ner_prompt = PromptTemplate(
+            template = NER_PROMPT_TPL,
+            partial_variables = {'format_instructions': format_instructions},
+            input_variables = ['query']
+        )
+
+        ner_chain = LLMChain(
+            llm = get_llm_model(),
+            prompt = ner_prompt,
+            verbose = os.getenv('VERBOSE')
+        )
+
+        result = ner_chain.invoke({
+            'query': query
+        })['text']
+        
+        ner_result = output_parser.parse(result)
+        print(ner_result)
+
 if __name__ == '__main__':
     agent = Agent()
     # print(agent.generic_func('Who are you'))
-    print(agent.retrival_func('Introduce the campus gym'))
+    # print(agent.retrival_func('Introduce the campus gym'))
+    print(agent.graph_func('what are the compulsory modules in year2 of the degree BEng Avionic Systems(Hons) of the University of Liverpool?'))

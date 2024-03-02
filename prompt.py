@@ -16,3 +16,14 @@ Search results：{query_result}
 ----------
 User Question：{query}
 '''
+
+NER_PROMPT_TPL = '''
+1、Extract the entity content from the following user-entered sentence
+2、Note: Extract content based on facts entered by the user, do not reason, do not add information
+
+{format_instructions}
+------------
+User Input：{query}
+------------
+Output：
+'''
