@@ -6,7 +6,7 @@ import os
 class CreateKG():
 
     def __init__(self, kg_host, kg_port, kg_user, kg_password, data_path):
-        uri = f"bolt://{kg_user}:{kg_password}@{kg_host}:7689"
+        uri = f"bolt://{kg_user}:{kg_password}@{kg_host}:{kg_port}"
         self.graph = Graph(uri)
 
         if not data_path or data_path == '':
@@ -30,7 +30,7 @@ class CreateKG():
             except Exception as e:
                 print("Error saving entity:", e)
 
-    def saveRelaton(self, s_label, e_label, relation_type, relations):
+    def saveRelation(self, s_label, e_label, relation_type, relations):
         print(f"\n写入关系：{relation_type}")
         for relation in tqdm(relations):
             try:
@@ -62,7 +62,9 @@ class CreateKG():
 
                 for year, details in degree["courses"].items():
                     # 处理年级实体及其与学位的关系
-                    yearName = f"{degree['degree_name']} {year.capitalize()}"
+                    # yearName = f"{degree['degree_name']} {year.capitalize()}"
+                    # years.append({"name": yearName})
+                    yearName = year.capitalize()  # 例如 "Year1", "Year2", 等
                     years.append({"name": yearName})
                     degreeYearRelations.append({"s_name": degree["degree_name"], "e_name": yearName})
 
@@ -104,9 +106,9 @@ class CreateKG():
         
 if __name__ == '__main__':
     kg_host = "127.0.0.1"
-    kg_port = 7689
+    kg_port = 7687 # 7689
     kg_user = "neo4j"
     kg_password = "SXc2002627SXc"
-    data_path = "./dataset.json"
+    data_path = "./dataset/dataset.json"
     kg = CreateKG(kg_host, kg_port, kg_user, kg_password, data_path)
     kg.init()
