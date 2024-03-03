@@ -46,3 +46,26 @@ Query Result: {query_result}
 ----------
 User Question: {query}
 '''
+
+SUMMARY_PROMPT_TPL = '''
+Combine the following historical conversation information, and user message, to summarize a concise, complete user message.
+Give the summarized message directly, without any other information, completing the sentence appropriately with information such as the subject.
+If there is no correlation with the historical dialog message, directly output the original user message.
+Note that only the content is supplemented, the semantics of the original message, and the sentence style cannot be changed.
+
+For example:
+-----------
+Chat History:
+Human: What is the code of ELECTRICAL CIRCUITS FOR ENGINEERS \n AI: The code for the course "ELECTRICAL CIRCUITS FOR ENGINEERS" at the University of Liverpool is ELEC121.
+User Message: Which semester does that module belong to？
+-----------
+Output: ELECTRICAL CIRCUITS FOR ENGINEERS belongs to semester 1.
+
+-----------
+Chat History:
+{chat_history}
+-----------
+User Message: {query}
+-----------
+Output:
+'''
