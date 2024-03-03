@@ -62,9 +62,7 @@ class CreateKG():
 
                 for year, details in degree["courses"].items():
                     # 处理年级实体及其与学位的关系
-                    # yearName = f"{degree['degree_name']} {year.capitalize()}"
-                    # years.append({"name": yearName})
-                    yearName = year.capitalize()  # 例如 "Year1", "Year2", 等
+                    yearName = f"{degree['degree_name']} {year.capitalize()}"
                     years.append({"name": yearName})
                     degreeYearRelations.append({"s_name": degree["degree_name"], "e_name": yearName})
 
