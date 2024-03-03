@@ -144,6 +144,23 @@ class Agent():
             'query_result': '\n\n'.join(query_result) if len(query_result) else 'Not found'
         }
         return graph_chain.invoke(inputs)['text']
+    
+    def search_func(self, query):
+        prompt = PromptTemplate.from_template(SEARCH_PROMPT_TPL)
+        llm_chain = LLMChain(
+            llm = get_llm_model(),
+            prompt = prompt,
+            verbose = os.getenv('VERBOSE')
+        )
+        llm_request_chain = LLMRequestsChain(
+            llm_chain = llm_chain,
+            requests_key = 'query_result'
+        )
+        inputs = {
+            'query': query,
+            'url': 'https://www.google.com/search?q='+query.replace(' ', '+')
+        }
+        return llm_request_chain.invoke(inputs)['output']
 
 
 if __name__ == '__main__':
@@ -162,3 +179,4 @@ if __name__ == '__main__':
     # print(agent.graph_func('How many modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.graph_func('How many compulsory modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.graph_func('How many optional modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
+    print(agent.search_func('Where is the University of Liverpool?'))
