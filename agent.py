@@ -49,7 +49,7 @@ class Agent():
         return retrival_chain.invoke(inputs)['text']
     
     def graph_func(self, query):
-        # 命名实体识别
+        # NER
         response_schemas = [
             ResponseSchema(type='list', name='University', description='university entity'),
             ResponseSchema(type='list', name='Degree', description='degree entity'),
@@ -78,7 +78,6 @@ class Agent():
         })['text']
         
         ner_result = output_parser.parse(result)
-        # print(ner_result)
 
         graph_templates = []
         for key, template in GRAPH_TEMPLATE.items():
@@ -90,38 +89,21 @@ class Agent():
                     'cypher': replace_token_in_string(template['cypher'], [[slot, value]]),
                     'answer': replace_token_in_string(template['answer'], [[slot, value]]),
                 })
-                # print(graph_templates)
-        # graph_templates = []
-        # for key, template in GRAPH_TEMPLATE.items():
-        #     replacements = {}  # 使用字典来存储替换值
-        #     for slot in template['slots']:
-        #         slot_values = ner_result.get(slot, [])
-        #         if slot_values:  # 假设slot_values始终返回列表中的第一个元素作为替换值
-        #             replacements[slot] = slot_values[0]  # 直接使用第一个值进行替换
-
-        #     if replacements:
-        #         graph_templates.append({
-        #             'question': replace_token_in_string(template['question'], replacements),
-        #             'cypher': replace_token_in_string(template['cypher'], replacements),
-        #             'answer': replace_token_in_string(template['answer'], replacements),
-        #         })
-
         if not graph_templates:
             return 
         
-        # 计算问题相似度，筛选最相关问题
+        # Calculate problem similarity and filter the most relevant problems
         graph_documents = [
             Document(page_content=template['question'], metadata=template)
             for template in graph_templates
         ]
         db = FAISS.from_documents(graph_documents, get_embeddings_model())
         graph_documents_filter = db.similarity_search_with_relevance_scores(query, k=3)
-        # print(graph_documents_filter)
 
         def format_answer(answer_template, result):
-            # 动态替换所有键值对
+            # Dynamically replace all key-value pairs
             for key, values in result.items():
-                # 确保所有值都转换为字符串
+                # Make sure all values are converted to strings
                 str_values = [str(value) for value in values]
                 answer_template = answer_template.replace(f"%{key}%", ', '.join(str_values))
             return answer_template
@@ -131,14 +113,11 @@ class Agent():
         for document in graph_documents_filter:
             question = document[0].page_content
             cypher = document[0].metadata['cypher']
-            # print(cypher)
             answer_template = document[0].metadata['answer']
             try:
                 results = neo4j_conn.run(cypher).data()
-                # print(question)
-                # print(results)
                 if results:
-                    # 将所有结果转换为{key: [values]}格式
+                    # Convert all results to {key: [values]} format
                     aggregated_results = {}
                     for result in results:
                         for key, value in result.items():
@@ -146,14 +125,14 @@ class Agent():
                                 aggregated_results[key] = [value]
                             else:
                                 aggregated_results[key].append(value)
-                    # 格式化回答字符串
+                    # Format the answer string
                     answer_str = format_answer(answer_template, aggregated_results)
                     query_result.append(f'Question: {question}\nAnswer: {answer_str}')
             except Exception as e:
                 pass
             print(query_result)
 
-        # 总结答案
+        # Summarize the answers
         prompt = PromptTemplate.from_template(GRAPH_PROMPT_TPL)
         graph_chain = LLMChain(
             llm = get_llm_model(),
