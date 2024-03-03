@@ -33,6 +33,20 @@ def structured_output_parser(response_schemas):
         text += schema.name + ' field, represent: ' + schema.description + ', type is: ' + schema.type + '\n'
     return text
 
+def replace_token_in_string(string, slots):
+    for key, value in slots:
+        string = string.replace('%'+key+'%', value)
+    return string
+
+    # for key, value in slots.items():
+    #     string = string.replace(f'%{key}%', value)
+    # return string
+
+def get_neo4j_conn():
+    return Graph(
+        os.getenv('NEO4J_URI'), 
+        auth = (os.getenv('NEO4J_USERNAME'), os.getenv('NEO4J_PASSWORD'))
+    )
 
 if __name__ == '__main__':
     llm_model = get_llm_model()

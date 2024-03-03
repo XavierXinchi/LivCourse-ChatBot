@@ -27,3 +27,13 @@ User Input：{query}
 ------------
 Output：
 '''
+
+GRAPH_PROMPT_TPL = '''
+Please answer the user's question based on the following search results, and do not disassociate or associate the content.
+If there is no relevant information in the search results, reply "I don't know".
+----------
+Query Results：
+{query_result}
+----------
+User Question：{query}
+'''
