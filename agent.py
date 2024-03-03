@@ -21,7 +21,7 @@ class Agent():
             embedding_function = get_embeddings_model()
         )
     
-    def generic_func(self, query):
+    def generic_func(self, x, query):
         prompt = PromptTemplate.from_template(GENERIC_PROMPT_TPL)
         llm_chain = LLMChain(
             llm = get_llm_model(), 
@@ -30,7 +30,7 @@ class Agent():
         )
         return llm_chain.invoke(query)['text']
     
-    def retrival_func(self, query):
+    def retrival_func(self, x, query):
         # Recall and filter documents
         documents = self.vdb.similarity_search_with_relevance_scores(query, k=5)
         query_result = [doc[0].page_content for doc in documents if doc[1]>0.7]
@@ -48,7 +48,7 @@ class Agent():
         }
         return retrival_chain.invoke(inputs)['text']
     
-    def graph_func(self, query):
+    def graph_func(self, x, query):
         # NER
         response_schemas = [
             ResponseSchema(type='list', name='University', description='university entity'),
@@ -161,6 +161,55 @@ class Agent():
             'url': 'https://www.google.com/search?q='+query.replace(' ', '+')
         }
         return llm_request_chain.invoke(inputs)['output']
+    
+    def query(self, query):
+        tools = [
+            Tool.from_function(
+                name = 'generic_func',
+                func = lambda x: self.generic_func(x, query),
+                description = 'For answering questions in generalized areas of knowledge, such as greeting, asking who you are, etc.',
+            ),
+            Tool.from_function(
+                name = 'retrival_func',
+                func = lambda x: self.retrival_func(x, query),
+                description = 'For answering questions from additional corpus, e.g. campus gym information',
+            ),
+            Tool(
+                name = 'graph_func',
+                func = lambda x: self.graph_func(x, query),
+                description = 'For answering questions about University of Liverpool courses, degrees, modules, etc.',
+            ),
+            Tool(
+                name = 'search_func',
+                func = self.search_func,
+                description = 'For answering generalized questions through a search engine when other tools don\'t have the correct answers',
+            ),
+        ]
+
+        prefix = """Answer the following questions to the best of your ability. You can use the following tools:"""
+        suffix = """Begin!
+
+        History: {chat_history}
+        Question: {input}
+        Thought:{agent_scratchpad}"""
+
+        agent_prompt = ZeroShotAgent.create_prompt(
+            tools=tools,
+            prefix=prefix,
+            suffix=suffix,
+            input_variables=['input', 'agent_scratchpad', 'chat_history']
+        )
+        llm_chain = LLMChain(llm=get_llm_model(), prompt=agent_prompt)
+        agent = ZeroShotAgent(llm_chain=llm_chain)
+
+        memory = ConversationBufferMemory(memory_key='chat_history')
+        agent_chain = AgentExecutor.from_agent_and_tools(
+            agent = agent, 
+            tools = tools, 
+            memory = memory, 
+            verbose = os.getenv('VERBOSE')
+        )
+        return agent_chain.invoke({'input': query})
 
 
 if __name__ == '__main__':
@@ -179,4 +228,5 @@ if __name__ == '__main__':
     # print(agent.graph_func('How many modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.graph_func('How many compulsory modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.graph_func('How many optional modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
-    print(agent.search_func('Where is the University of Liverpool?'))
+    # print(agent.search_func('Where is the University of Liverpool?'))
+    # print(agent.query('What optional modules does Computer Science BSc (Hons) with Computer Science BSc (Hons) Year2 include at the university of liverpool?'))
