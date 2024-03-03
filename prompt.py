@@ -12,9 +12,9 @@ RETRIVAL_PROMPT_TPL = '''
 Please answer the user question based on the following search results without additional and associative content.
 Respond with "I don't know" if there is no relevant information in the search results。
 ----------
-Search results：{query_result}
+Search results: {query_result}
 ----------
-User Question：{query}
+User Question: {query}
 '''
 
 NER_PROMPT_TPL = '''
@@ -23,17 +23,26 @@ NER_PROMPT_TPL = '''
 
 {format_instructions}
 ------------
-User Input：{query}
+User Input: {query}
 ------------
-Output：
+Output:
 '''
 
 GRAPH_PROMPT_TPL = '''
 Please answer the user's question based on the following search results, and do not disassociate or associate the content.
 If there is no relevant information in the search results, reply "I don't know".
 ----------
-Query Results：
+Query Results:
 {query_result}
 ----------
-User Question：{query}
+User Question: {query}
+'''
+
+SEARCH_PROMPT_TPL = '''
+Please answer the user's question based on the following search results, and do not disassociate or associate the content.
+If there is no relevant information in the search results, reply "I don't know".
+----------
+Query Result: {query_result}
+----------
+User Question: {query}
 '''
