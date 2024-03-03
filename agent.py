@@ -229,4 +229,4 @@ if __name__ == '__main__':
     # print(agent.graph_func('How many compulsory modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.graph_func('How many optional modules the university of liverpool offered in Computer Science BSc (Hons) with Computer Science BSc (Hons) Year3?'))
     # print(agent.search_func('Where is the University of Liverpool?'))
-    # print(agent.query('What optional modules does Computer Science BSc (Hons) with Computer Science BSc (Hons) Year2 include at the university of liverpool?'))
+    # print(agent.query('Which semester does ELECTRICAL CIRCUITS FOR ENGINEERS belong to'))
