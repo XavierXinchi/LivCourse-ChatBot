@@ -16,3 +16,13 @@ LivCourse-ChatBot ia a chatbot about the University of Liverpool courses based o
 💡The following image shows the chatbot demo after deployment.
 
 ![](./img/demo.png)
+
+## 💫 Features
+
+## ⚠️ Disclaimer
+
+This project-related resources are for academic research only , strictly prohibited for commercial use . When using parts involving third-party code, please strictly follow the corresponding open source agreement. For any content of the model output, this project does not assume any legal responsibility, and does not assume responsibility for any loss that may arise from the use of related resources and output results.
+
+## 🌟 Support
+
+If you like this project, please don't forget to star this repository.
