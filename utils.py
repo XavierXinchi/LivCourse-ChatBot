@@ -38,10 +38,6 @@ def replace_token_in_string(string, slots):
         string = string.replace('%'+key+'%', value)
     return string
 
-    # for key, value in slots.items():
-    #     string = string.replace(f'%{key}%', value)
-    # return string
-
 def get_neo4j_conn():
     return Graph(
         os.getenv('NEO4J_URI'), 
@@ -50,4 +46,3 @@ def get_neo4j_conn():
 
 if __name__ == '__main__':
     llm_model = get_llm_model()
-    print(llm_model.predict('what is university of liverpool?'))
