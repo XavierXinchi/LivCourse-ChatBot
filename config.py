@@ -37,7 +37,7 @@ GRAPH_TEMPLATE = {
     'question': 'How many optional modules it offered of %Year%?',
     'cypher': """
         MATCH (:Year {name: '%Year%'})-[:INCLUDES_OPTIONAL]->(m)
-        RETURN COUNT(m) AS moduleCount
+        RETURN COUNT(m) - 1 AS moduleCount
     """,
     'answer': 'There are %moduleCount% optional modules in %Year%.',
     },
