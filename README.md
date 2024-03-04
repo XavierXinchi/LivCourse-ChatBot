@@ -13,6 +13,6 @@
 
 LivCourse-ChatBot ia a chatbot about the University of Liverpool courses based on a **fusion of knowledge graphs (KG) and large language models (LLMs).** It combines the advantages of LLMs and KGs to answer both generic and domain-specific questions, such as information about course modules at the University of Liverpool.
 
-💡 The following image shows the chatbot demo after deployment.
+💡The following image shows the chatbot demo after deployment.
 
 ![](./img/demo.png)
