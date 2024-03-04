@@ -25,4 +25,4 @@ This project-related resources are for academic research only , strictly prohibi
 
 ## 🌟 Support
 
-If you like this project, please don't forget to star this repository.
+If you like this project, please don't forget to star✨ this repository.
