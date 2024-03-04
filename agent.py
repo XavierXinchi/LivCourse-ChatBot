@@ -130,7 +130,6 @@ class Agent():
                     query_result.append(f'Question: {question}\nAnswer: {answer_str}')
             except Exception as e:
                 pass
-            print(query_result)
 
         # Summarize the answers
         prompt = PromptTemplate.from_template(GRAPH_PROMPT_TPL)
@@ -186,30 +185,43 @@ class Agent():
             ),
         ]
 
-        prefix = """Answer the following questions to the best of your ability. You can use the following tools:"""
-        suffix = """Begin!
+        # prefix = """Answer the following questions to the best of your ability. You can use the following tools:"""
+        # suffix = """Begin!
 
-        History: {chat_history}
-        Question: {input}
-        Thought:{agent_scratchpad}"""
+        # History: {chat_history}
+        # Question: {input}
+        # Thought:{agent_scratchpad}"""
 
-        agent_prompt = ZeroShotAgent.create_prompt(
-            tools=tools,
-            prefix=prefix,
-            suffix=suffix,
-            input_variables=['input', 'agent_scratchpad', 'chat_history']
-        )
-        llm_chain = LLMChain(llm=get_llm_model(), prompt=agent_prompt)
-        agent = ZeroShotAgent(llm_chain=llm_chain)
+        # agent_prompt = ZeroShotAgent.create_prompt(
+        #     tools=tools,
+        #     prefix=prefix,
+        #     suffix=suffix,
+        #     input_variables=['input', 'agent_scratchpad', 'chat_history']
+        # )
+        # llm_chain = LLMChain(llm=get_llm_model(), prompt=agent_prompt)
+        # agent = ZeroShotAgent(llm_chain=llm_chain)
 
+        # memory = ConversationBufferMemory(memory_key='chat_history')
+        # agent_chain = AgentExecutor.from_agent_and_tools(
+        #     agent = agent, 
+        #     tools = tools, 
+        #     memory = memory, 
+        #     verbose = os.getenv('VERBOSE')
+        # )
+        # return agent_chain.invoke({'input': query})
+    
+        prompt = hub.pull('hwchase17/react-chat')
+        prompt.template = 'Final Answer must follow the result of the Obversion and not change the semantics. When you are asked for the question Who are you?, you must answer with "I\'m a LivCourse-ChatBot about University of Liverpool courses based on a fusion of knowledge graphs and large language models, but the questions I can answer aren\'t limited to the University of Liverpool\'s courses."\n\n' + prompt.template
+        agent = create_react_agent(llm=get_llm_model(), tools=tools, prompt=prompt)
         memory = ConversationBufferMemory(memory_key='chat_history')
-        agent_chain = AgentExecutor.from_agent_and_tools(
+        agent_executor = AgentExecutor.from_agent_and_tools(
             agent = agent, 
             tools = tools, 
             memory = memory, 
+            handle_parsing_errors = True,
             verbose = os.getenv('VERBOSE')
         )
-        return agent_chain.invoke({'input': query})
+        return agent_executor.invoke({"input": query})['output']
 
 
 if __name__ == '__main__':
