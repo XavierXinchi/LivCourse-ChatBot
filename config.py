@@ -25,7 +25,7 @@ GRAPH_TEMPLATE = {
     },
     'year_compulsory_module_count': {
     'slots': ['Year'],
-    'question': 'How many compulsory modules it offered of %Year%?',
+    'question': 'How many compulsory modules does the university of liverpool offered of %Year%?',
     'cypher': """
         MATCH (:Year {name: '%Year%'})-[:INCLUDES_COMPULSORY]->(m)
         RETURN COUNT(m) AS moduleCount
@@ -34,16 +34,16 @@ GRAPH_TEMPLATE = {
     },
     'year_optional_module_count': {
     'slots': ['Year'],
-    'question': 'How many optional modules it offered of %Year%?',
+    'question': 'How many optional modules does the university of liverpool offered of %Year%?',
     'cypher': """
         MATCH (:Year {name: '%Year%'})-[:INCLUDES_OPTIONAL]->(m)
-        RETURN COUNT(m) - 1 AS moduleCount
+        RETURN COUNT(m) AS moduleCount
     """,
     'answer': 'There are %moduleCount% optional modules in %Year%.',
     },
     'year_module_count': {
     'slots': ['Year'],
-    'question': 'How many modules it offered of %Year%?',
+    'question': 'How many modules does the university of liverpool offered of %Year%?',
     'cypher': """
         MATCH (:Year {name: '%Year%'})-[:INCLUDES_COMPULSORY|INCLUDES_OPTIONAL]->(m)
         RETURN COUNT(m) AS moduleCount
