@@ -6,11 +6,6 @@ def course_bot(message, history):
     answer = service.answer(message, history)
     return answer['output']
 
-# css = '''
-# .gradio-container { max-width:850px !important; margin:20px auto !important;}
-# .message { padding: 10px !important; font-size: 14px !important;}
-# '''
-
 css = """
 .gradio-container { 
     max-width: 850px; 
