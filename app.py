@@ -3,8 +3,7 @@ from service import Service
 
 def course_bot(message, history):
     service = Service()
-    answer = service.answer(message, history)
-    return answer['output']
+    return service.answer(message, history)
 
 css = """
 .gradio-container { 
