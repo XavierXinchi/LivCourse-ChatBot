@@ -15,4 +15,4 @@ LivCourse-ChatBot ia a chatbot about the University of Liverpool courses based o
 
 💡 The following image shows the chatbot demo after deployment.
 
-<img src="https://github.com/XavierXinchi/LivCourse-ChatBot/tree/main/img/demo.png" />
+<img src="https://ibb.co/wgWpDNw" />
