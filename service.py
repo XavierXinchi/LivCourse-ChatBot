@@ -20,7 +20,7 @@ class Service():
 
     def answer(self, message, history):
         if history:
-            # message = self.get_summary_message(message, history)
+            message = self.get_summary_message(message, history)
             pass
         return self.agent.query(message)
 
