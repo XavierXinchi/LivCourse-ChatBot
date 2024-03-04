@@ -17,7 +17,6 @@ css = """
 }
 
 .gradio-app header {
-    background-color: #5D3FD3;
     color: white;
     padding: 20px;
     border-top-left-radius: 10px;
