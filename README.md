@@ -19,9 +19,30 @@ LivCourse-ChatBot ia a chatbot about the University of Liverpool courses based o
 
 ## 💫 Features
 
+- Memory-based: The model can understant the context of the use's questions
+- Domain-specific: The model can answer specific questions about the couse information of the University of Liverpool
+- Scalable: Developers can add additional personalized corpus for the model learning 
+
+The following image shows the structure of the model:
+
+![](./img/diagram.png)
+
+In the first module, the large language model will combine the user's original question with the historical dialog to produce a processed question.
+
+In the second module, the processed question will be sent to the Agent, which will generate a chain of thoughts to determine which category the question belongs to, and hand it over to the function of the corresponding category to generate the final answer.
+
+- Generic_func: For answering questions in generalized areas of knowledge, such as greetings.
+- Retrival_func: For answering questions from additional corpus, e.g. campus gym information in this project.
+- Graph_func: For answering questions about the nodes and relationships stored in the graph database [neo4j](https://neo4j.com/?utm_source=Google&utm_medium=PaidSearch&utm_campaign=Evergreenutm_content%3DEMEA-Search-SEMBrand-Evergreen-None-SEM-SEM-NonABM&utm_term=neo4j&utm_adgroup=core-brand&gad_source=1&gclid=CjwKCAiAopuvBhBCEiwAm8jaMXhwJ32kD3nX9mhZ08_5oWgJRYbsGqg8Nw8ele399ED5WMwsB5axgBoCCnsQAvD_BwE), such as University of Liverpool courses, degrees, modules, etc.
+- Search_func: For answering questions through a search engine ([Google](https://www.google.com/)) when other functions don\'t generate the correct answers.
+
+## 🛠️ Quick Start
+
+
+
 ## ⚠️ Disclaimer
 
-This project-related resources are for academic research only , strictly prohibited for commercial use . When using parts involving third-party code, please strictly follow the corresponding open source agreement. For any content of the model output, this project does not assume any legal responsibility, and does not assume responsibility for any loss that may arise from the use of related resources and output results.
+This project-related resources are for academic research only , strictly prohibited for commercial use. When using parts involving third-party code, please strictly follow the corresponding open source agreement. For any content of the model output, this project does not assume any legal responsibility, and does not assume responsibility for any loss that may arise from the use of related resources and output results.
 
 ## 🌟 Support
 
