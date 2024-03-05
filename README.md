@@ -42,7 +42,7 @@ In the second module, the processed question will be sent to the Agent, which wi
 
 ## ⚠️ Disclaimer
 
-This project-related resources are for academic research only , strictly prohibited for commercial use. When using parts involving third-party code, please strictly follow the corresponding open source agreement. For any content of the model output, this project does not assume any legal responsibility, and does not assume responsibility for any loss that may arise from the use of related resources and output results.
+This project-related resources are for academic research only, strictly prohibited for commercial use. When using parts involving third-party code, please strictly follow the corresponding open source agreement. For any content of the model output, this project does not assume any legal responsibility, and does not assume responsibility for any loss that may arise from the use of related resources and output results.
 
 ## 🌟 Support
 
