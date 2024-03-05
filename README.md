@@ -38,7 +38,84 @@ In the second module, the processed question will be sent to the Agent, which wi
 
 ## 🛠️ Quick Start
 
+### 1. Install dependencies
 
+Create a virtual conda environment, activate it and install the packages:
+
+   ```shell
+   conda create -n LivCourse python=3.9
+   conda activate LivCourse
+   pip install -r requirements.txt
+   ```
+
+### 2. Setup the neo4j graph database
+
+Apply for your OpenAI API key in its [website](https://platform.openai.com/api-keys).
+
+Go to `.env` file, and set your `OPENAI_API_KEY`, `NEO4J_URI`, and `NEO4J_PASSWORD`.
+
+Run the following codes to generate the knowledge graphs in your neo4j database:
+
+```shell
+python gen_kg.py
+```
+
+### 3. Use LangSmith to monitor the application (Optional)
+
+Go to [LangSmith](https://smith.langchain.com/) website to apply for your API key and create a project called `LivCourse-ChatBot`. Configure environment to connect to LangSmith.
+
+```shell
+export LANGCHAIN_TRACING_V2=true
+export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
+export LANGCHAIN_API_KEY="<your langchain smith api>"
+export LANGCHAIN_PROJECT="LivCourse-ChatBot"
+```
+
+### 4. Run the chatbot demo
+
+```shell
+python app.py
+```
+
+The file structure is look like this
+
+```shell
+.
+├── LICENSE
+├── README.md
+├── __pycache__
+│   ├── agent.cpython-39.pyc
+│   ├── config.cpython-39.pyc
+│   ├── prompt.cpython-39.pyc
+│   ├── service.cpython-39.pyc
+│   └── utils.cpython-39.pyc
+├── agent.py
+├── app.py
+├── config.py
+├── data
+│   └── db
+│       ├── chroma.sqlite3
+│       └── f4e6c6f1-3933-4325-b4d3-51ea2dceec57
+│           ├── data_level0.bin
+│           ├── header.bin
+│           ├── length.bin
+│           └── link_lists.bin
+├── data_process.py
+├── dataset
+│   └── dataset.json
+├── env.txt
+├── gen_kg.py
+├── img
+│   ├── demo.png
+│   ├── diagram.png
+│   └── diagram.svg
+├── inputs
+│   └── gym.txt
+├── prompt.py
+├── requirements.txt
+├── service.py
+└── utils.py
+```
 
 ## ⚠️ Disclaimer
 
