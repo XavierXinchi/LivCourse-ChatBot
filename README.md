@@ -103,7 +103,6 @@ The file structure is look like this
 ├── data_process.py
 ├── dataset
 │   └── dataset.json
-├── env.txt
 ├── gen_kg.py
 ├── img
 │   ├── demo.png
