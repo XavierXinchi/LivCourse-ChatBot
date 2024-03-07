@@ -26,7 +26,7 @@ LivCourse-聊天机器人是一个**基于知识图谱（KG）和大型语言模
 
 下图展示了模型的结构：
 
-![](/Users/xavier/vscodeprojects/LivCourse_ChatBot/img/diagram.png)
+![](./img/diagram.png)
 
 在第一个模块中，大语言模型将把用户的原始问题与历史对话结合起来，生成一个经过处理的问题。
 
