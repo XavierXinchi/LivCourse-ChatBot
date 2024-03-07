@@ -1,6 +1,6 @@
 # LivCourse-ChatBot
 
-[**🇨🇳Chinese**](./README.md) | [**🌐English**](./README.md) | [**❓Issues**](https://github.com/XavierXinchi/LivCourse-ChatBot/issues)
+[**🇨🇳Chinese**](./README_CN.md) | [**🌐English**](./README.md) | [**❓Issues**](https://github.com/XavierXinchi/LivCourse-ChatBot/issues)
 
 <p align="center">
     <img alt="GitHub" src="https://img.shields.io/badge/license-Apache--2.0-blue">
